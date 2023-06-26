@@ -11,13 +11,13 @@ def find_current_cap_hit(player_found=True):
         name = doc.select('h1.c')[0].text.strip().title()
         team = doc.select('h3.c')[0].text.strip().title()
         sal = doc.find_all(['td'],class_="b")
-    except:
+    except IndexError:
         print("Player not found.")
         player_found = False
     if player_found != False:
         try:
             print("Player:", name, "\nTeam: ", team, "\nYear:", sal[0].string, "\nCap Hit:", sal[2].string)
-        except:
+        except IndexError:
             print("Player does not have an active contract for current season")
     request_another_player = input("Would you like to search for another player? ('Y/N') : ")
     if request_another_player.upper() == "Y":
